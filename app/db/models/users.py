@@ -1,12 +1,12 @@
-from sqlalchemy import column , Integer , String
+from sqlalchemy import Column , Integer , String
 from app.core.database import base
 from datetime import datetime
 
 class User(base):
     __tablename__ = "users"
-    id = column(Integer , primary_key = True)
-    name = column(String(100))
-    email = column(String(50) , unique = True)
-    password = column(String(50))
-    role = column(String(50))
-    created_at = column(datetime , default = datetime.utcnow)
+    id = Column(Integer , primary_key = True)
+    name = Column(String(100))
+    email = Column(String(50) , unique = True)
+    password = Column(String(50))
+    role = Column(String(50))
+    created_at = Column(datetime , default = datetime.utcnow)
