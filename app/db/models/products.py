@@ -1,8 +1,8 @@
 from sqlalchemy import Column , Integer , String , Float , ForeignKey , DateTime
-from app.core.database import base
+from app.core.database import Base
 from datetime import datetime
 
-class Product(base):
+class Product(Base):
     __tablename__ = "products"
     id = Column(Integer , primary_key = True)
     name = Column(String(100))

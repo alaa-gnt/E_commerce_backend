@@ -9,7 +9,7 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit  = False, autoflush=False , bind=engine)
 
-base = declarative_base()
+Base = declarative_base()
 
 def get_db():
     db = SessionLocal()  # a connection to the dataBase

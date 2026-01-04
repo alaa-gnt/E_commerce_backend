@@ -1,8 +1,8 @@
 from sqlalchemy import Column , Integer , String , ForeignKey , Float , DateTime
-from app.core.database import base
+from app.core.database import Base
 from datetime import datetime
 
-class Order(base):
+class Order(Base):
     __tablename__ = "orders"
     id = Column(Integer , primary_key = True)
     user_id = Column(Integer , ForeignKey("users.id"))
