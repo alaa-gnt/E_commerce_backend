@@ -1,4 +1,4 @@
-from sqlalchemy import Column , Integer , String
+from sqlalchemy import Column , Integer , String , DateTime
 from app.core.database import base
 from datetime import datetime
 
@@ -9,4 +9,4 @@ class User(base):
     email = Column(String(50) , unique = True)
     password = Column(String(50))
     role = Column(String(50))
-    created_at = Column(datetime , default = datetime.utcnow)
+    created_at = Column(DateTime , default = datetime.utcnow)

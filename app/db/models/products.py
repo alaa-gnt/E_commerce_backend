@@ -1,4 +1,4 @@
-from sqlalchemy import Column , Integer , String , Float , ForeignKey
+from sqlalchemy import Column , Integer , String , Float , ForeignKey , DateTime
 from app.core.database import base
 from datetime import datetime
 
@@ -10,4 +10,4 @@ class Product(base):
     price = Column(Float)
     stock = Column(Integer)
     category_id = Column(Integer , ForeignKey("categories.id"))
-    created_at = Column(datetime , default = datetime.utcnow)
+    created_at = Column(DateTime , default = datetime.utcnow)
