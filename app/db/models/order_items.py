@@ -1,6 +1,6 @@
-from sqlalchemy import Column , Integer , String , Float , ForeignKey
+from sqlalchemy import Column , Integer , Float , ForeignKey
+from sqlalchemy.orm import relationship
 from app.core.database import Base
-from datetime import datetime
 
 class Order_item(Base):
     __tablename__ = "order_items"
@@ -9,3 +9,6 @@ class Order_item(Base):
     product_id = Column(Integer , ForeignKey("products.id"))
     quantity = Column(Integer)
     price = Column(Float)
+
+    order = relationship("Order" , back_populates="order_items")
+    product = relationship("Product" , back_populates="order_items")

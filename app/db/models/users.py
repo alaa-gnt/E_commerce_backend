@@ -1,6 +1,7 @@
 from sqlalchemy import Column , Integer , String , DateTime
 from app.core.database import Base
 from datetime import datetime
+from sqlalchemy.orm import relationship
 
 class User(Base):
     __tablename__ = "users"
@@ -10,3 +11,5 @@ class User(Base):
     password = Column(String(50))
     role = Column(String(50))
     created_at = Column(DateTime , default = datetime.utcnow)
+
+    orders =  relationship("Order", back_populates="user")
