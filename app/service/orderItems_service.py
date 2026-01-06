@@ -14,7 +14,7 @@ class OrderItemsService:
         
         if not product:
             raise ValueError("Product not found")
-            price = product.price * item_data.quantity
+        price = product.price * item_data.quantity
         
         return self.order_items_repo.create_order_item(item_data, order_id, price)
 
