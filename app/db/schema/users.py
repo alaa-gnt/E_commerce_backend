@@ -1,6 +1,6 @@
 from pydantic import BaseModel , EmailStr
 from datetime import datetime
-from typing import List,Optional
+from typing import Optional
 
 #Base schema 
 class UserBase(BaseModel):
@@ -12,12 +12,16 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     password:str # client must provide password
 
+class UserUpdate(BaseModel):
+    name : Optional[str] = None 
+    email : Optional[EmailStr] = None 
+    role : Optional[str] = None
+    password: Optional[str] = None 
 
 #Out / Response scchema : what we return to the client 
 class UserOut(UserBase):
     id:int
     created_at : datetime
-
 
     class Config:
         from_attributes = True # allows conversion from SQLAlchemy model
