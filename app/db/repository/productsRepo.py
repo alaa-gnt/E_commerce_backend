@@ -1,6 +1,6 @@
 from .base import BaseRepository
 from app.db.models.products import Product
-from app.db.schema.products import ProductCreate
+from app.db.schema.products import ProductCreate, ProductUpdate
 
 class ProductsRepository(BaseRepository):
     def create_product(self, product_data: ProductCreate):
@@ -27,7 +27,7 @@ class ProductsRepository(BaseRepository):
         
         return products
     
-    def update_product_by_id(self, product_id: int, product_data: ProductCreate):
+    def update_product_by_id(self, product_id: int, product_data: ProductUpdate):
         product = self.session.query(Product).filter(Product.id == product_id).first()
         if not product:
             return None

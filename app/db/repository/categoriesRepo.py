@@ -1,6 +1,6 @@
 from .base import BaseRepository
 from app.db.models.categories import Category
-from app.db.schema.categories import CategoryCreate
+from app.db.schema.categories import CategoryCreate, CategoryUpdate
 
 class CategoriesRepository(BaseRepository):
     def create_category(self, category_data: CategoryCreate):
@@ -27,7 +27,7 @@ class CategoriesRepository(BaseRepository):
         
         return categories
     
-    def update_category_by_id(self, category_id: int, category_data: CategoryCreate):
+    def update_category_by_id(self, category_id: int, category_data: CategoryUpdate):
         category = self.session.query(Category).filter(Category.id == category_id).first()
         if not category:
             return None

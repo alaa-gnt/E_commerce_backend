@@ -1,6 +1,6 @@
 from .base import BaseRepository
 from app.db.models.payments import Payment
-from app.db.schema.payments import PaymentCreate
+from app.db.schema.payments import PaymentCreate, PaymentUpdate
 
 class PaymentsRepository(BaseRepository):
     def create_payment(self, payment_data: PaymentCreate):
@@ -27,10 +27,12 @@ class PaymentsRepository(BaseRepository):
         
         return payments
     
-    def update_payment_by_id(self, payment_id: int, update_data: dict):
+    def update_payment_by_id(self, payment_id: int, payment_data: PaymentUpdate):
         payment = self.session.query(Payment).filter(Payment.id == payment_id).first()
         if not payment:
             return None
+        
+        update_data = payment_data.model_dump(exclude_none=True)
 
         for key, value in update_data.items():
             setattr(payment, key, value)

@@ -10,6 +10,10 @@ class OrderBase(BaseModel):
 class OrderCreate(OrderBase):
     items: List[OrderItemCreate]
 
+class OrderUpdate(BaseModel):
+    status: Optional[str] = None
+    total_price: Optional[float] = None
+
 class OrderOut(OrderBase):
     id: int
     total_price: float

@@ -6,7 +6,11 @@ class OrderItemBase(BaseModel):
     quantity: int
 
 class OrderItemCreate(OrderItemBase):
-    pass  
+    pass
+
+class OrderItemUpdate(BaseModel):
+    quantity: Optional[int] = None
+    price: Optional[float] = None
 
 # Out schema: what server returns to client
 class OrderItemOut(OrderItemBase):

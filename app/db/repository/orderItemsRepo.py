@@ -1,6 +1,6 @@
 from .base import BaseRepository
 from app.db.models.order_items import Order_item
-from app.db.schema.order_items import OrderItemCreate
+from app.db.schema.order_items import OrderItemCreate, OrderItemUpdate
 
 class OrderItemsRepository(BaseRepository):
     def create_order_item(self, order_item_data: OrderItemCreate, order_id: int, price: float):
@@ -32,10 +32,12 @@ class OrderItemsRepository(BaseRepository):
         
         return order_items
     
-    def update_order_item_by_id(self, order_item_id: int, update_data: dict):
+    def update_order_item_by_id(self, order_item_id: int, order_item_data: OrderItemUpdate):
         order_item = self.session.query(Order_item).filter(Order_item.id == order_item_id).first()
         if not order_item:
             return None
+        
+        update_data = order_item_data.model_dump(exclude_none=True)
 
         for key, value in update_data.items():
             setattr(order_item, key, value)

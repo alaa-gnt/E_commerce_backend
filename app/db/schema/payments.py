@@ -10,6 +10,10 @@ class PaymentBase(BaseModel):
 class PaymentCreate(PaymentBase):
     pass
 
+class PaymentUpdate(BaseModel):
+    method: Optional[str] = None
+    status: Optional[str] = None
+
 # Out schema: what server returns to client
 class PaymentOut(PaymentBase):
     id: int
