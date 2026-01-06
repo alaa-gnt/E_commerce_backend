@@ -11,12 +11,10 @@ class PaymentsService:
         return self.repo.create_payment(payment_data)
     
     def process_payment(self, payment_id: int):
-        """Process a payment and update its status to 'processing'"""
         payment_data = PaymentUpdate(status="processing")
         return self.repo.update_payment_by_id(payment_id, payment_data)
     
     def verify_payment(self, payment_id: int):
-        """Verify and complete a payment by updating status to 'completed'"""
         payment_data = PaymentUpdate(status="completed")
         return self.repo.update_payment_by_id(payment_id, payment_data)
     
@@ -25,7 +23,6 @@ class PaymentsService:
         return self.repo.update_payment_by_id(payment_id, payment_data)
     
     def refund_payment(self, payment_id: int):
-        """Refund a payment by updating status to 'refunded'"""
         payment_data = PaymentUpdate(status="refunded")
         return self.repo.update_payment_by_id(payment_id, payment_data)
     
