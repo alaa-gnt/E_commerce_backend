@@ -11,7 +11,7 @@ class hashHelper(object):
         
     
     @staticmethod
-    def get_password_hash(plain_password:str):
+    def hash_password(plain_password:str):
         return hashpw(
             plain_password.encode('utf-8'),
             gensalt()
