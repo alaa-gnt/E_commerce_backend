@@ -7,13 +7,15 @@ class UsersService:
     def __init__(self , repo : UsersRepository):
         self.repo = repo
 
-
+    # create user function
+    # during the creating we hash the password that store it 
     def create_user(self , user_data:UserCreate):
         user_data.password = hash_password(user_data.password)
 
         return self.repo.create_user(user_data)
     
-    
+    #upadeting user data 
+    # hashin the passwrod before the update
     def update_user(self , user_id : int , user_data : UserUpdate) -> User | None:
         
         if user_data.password:
@@ -21,12 +23,15 @@ class UsersService:
 
         return self.repo.update_user_by_id(user_id , user_data)
     
+    # get users paginated just returning the repo operation
     def get_users_paginated(self, page: int = 1, page_size: int = 10):
         return self.repo.get_all_users(page, page_size)
     
+    #same thing here
     def get_user_by_id(self, user_id: int) -> User | None:
         return self.repo.get_user_by_id(user_id)
 
+    #verfiying the credentials of the user by its email and password and return pass
     def verify_user_credentials(self, email: str, password: str) -> User | None:
         user = self.repo.get_user_by_email(email)
         if not user:
@@ -35,6 +40,7 @@ class UsersService:
             return user
         return None
 
+    # delting user
     def delete_user(self, user_id: int) -> bool:
         return self.repo.delete_user(user_id)
    
